@@ -46,7 +46,8 @@ const NavbarEmp = () => {
   const profileLinks = [
     { href: '/seeker-profile', icon: <UserCircle size={16} />, label: 'Profile' },
     { href: '/signin', icon: <UserCircle size={16} />, label: 'Sign out' },
-    { href: '/home', icon: <UserCircle size={16} />, label: 'employer?' }
+    { href: '/home', icon: <UserCircle size={16} />, label: 'employer?' },
+    { href: '/paymentnotificationPage', icon: <Bell size={18} />, label: 'Payments' }
   ];
 
   return (

@@ -190,8 +190,8 @@ const Login = () => {
         <p className="text-center mt-6 text-sm text-gray-600">
           Don't have an account?{" "}
           <Link 
-            onClick={()=>{navigate("/signin")}}
-            to="/create-account" 
+            onClick={()=>{navigate("/auth")}}
+            to="/auth" 
             className="text-blue-600 hover:underline font-medium"
           >
             Create Account

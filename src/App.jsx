@@ -27,6 +27,7 @@ import Ai from './pages/Chat';
 import EmployerBillingDashboard from './pages/Employer/Billing';
 import Login from './pages/Employer/SignInPage';
 import ManagePay from './pages/Employer/ManagePay';
+import PaymentNotificationPage from './pages/PaymentNotifications';
 
 const LayoutWithNavbar = () => {
   return (
@@ -64,6 +65,7 @@ function App() {
             <Route path='seeker-profile' element={<JobSeekerProfilePage />} />
             <Route path='jobseekerdashboard' element={<JobSeekerDashboard />} />
             <Route path="chat" element={<Ai />} />
+            <Route path="paymentnotificationPage" element={<PaymentNotificationPage/>} />
           </Route>
 
           {/* Auth Routes (No Navbar) */}
