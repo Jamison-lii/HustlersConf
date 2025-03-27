@@ -4,7 +4,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { FiBriefcase } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
-const Hero = () => {
+const HeroCopy = () => {
   // Popular job categories in Cameroon
   const popularCategories = [
     "Software Development",
@@ -23,18 +23,18 @@ const Hero = () => {
         {/* Main Heading */}
         <div className="text-center mb-8">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-            Find your <span className="text-blue-600">Dream Job</span> in <br />
+            Find the <span className="text-blue-600">Best Workforce</span> in <br />
             Cameroon's Growing Market
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
             Connect with top employers across Douala, Yaoundé, Buea and beyond.
             Start your career journey today.
           </p>
-        
-           <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-              Looking to employ? checkout <span className="text-blue-600" onClick={()=>{navigate('/home')}}>employer's section</span> 
-           </p>
-          
+         
+          <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+             Looking for more Jobs? checkout <span className="text-blue-600" onClick={()=>{navigate('/')}}>seekers sections</span> 
+          </p>
+           
         </div>
 
         {/* Search Bar */}
@@ -99,4 +99,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default HeroCopy;

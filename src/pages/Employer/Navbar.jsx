@@ -1,9 +1,8 @@
-
 import { useState, useRef, useEffect } from 'react';
 import {
   Briefcase, Bell, UserCircle, Plus, ChevronDown,
   Menu, X, Home, Users, BarChart2, Settings,
-  CreditCard, HelpCircle, LogOut,MessageSquare
+  CreditCard, HelpCircle, LogOut, MessageSquare
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -12,9 +11,9 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const profileRef = useRef(null);
-  const navigate= useNavigate()
+  const navigate = useNavigate();
 
-  // Close profile menu when clicking outside
+  // Close menus when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
@@ -41,6 +40,16 @@ const Navbar = () => {
     { href: '/signin', icon: <LogOut size={16} />, label: 'Sign Out' },
     { href: '/', icon: <LogOut size={16} />, label: 'seeker?' },
   ];
+
+  const handlePostJob = () => {
+    navigate('/post');
+    setMobileMenuOpen(false);
+  };
+
+  const handleNotification = () => {
+    navigate('/employers-notification');
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
@@ -73,13 +82,18 @@ const Navbar = () => {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-3">
-            <button onClick={()=>{navigate('/post')}} className="hidden md:flex items-center gap-1 rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
+            <button 
+              onClick={handlePostJob}
+              className="hidden md:flex items-center gap-1 rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+            >
               <Plus size={16} />
               <span>Post Job</span>
-              
             </button>
 
-            <button onClick={()=>{navigate("employers-notification")}} className="p-2 text-gray-500 hover:text-gray-700 relative">
+            <button 
+              onClick={handleNotification}
+              className="p-2 text-gray-500 hover:text-gray-700 relative"
+            >
               <Bell size={18} />
               <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-red-500"></span>
             </button>
@@ -100,20 +114,19 @@ const Navbar = () => {
               </button>
 
               {profileMenuOpen && (
-
-             
-              <div className="absolute right-0 mt-2 w-48 origin-top-right rounded-lg bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                {profileLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-50"
-                  >
-                    {link.icon}
-                    <span>{link.label}</span>
-                  </Link>
-                ))}
-              </div>
+                <div className="absolute right-0 mt-2 w-48 origin-top-right rounded-lg bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  {profileLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-50"
+                      onClick={() => setProfileMenuOpen(false)}
+                    >
+                      {link.icon}
+                      <span>{link.label}</span>
+                    </Link>
+                  ))}
+                </div>
               )}
             </div>
 
@@ -128,27 +141,48 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Mirrors all desktop functionality */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white pb-3 pt-2">
+          {/* Main Navigation Links */}
           <div className="space-y-1 px-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
                 className="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
+                onClick={() => setMobileMenuOpen(false)}
               >
                 {link.icon}
                 <span>{link.label}</span>
               </Link>
             ))}
           </div>
-          <div className="mt-3 border-t border-gray-200 pt-3">
-            <button className="flex w-full items-center justify-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">
+
+          {/* Post Job Button (same as desktop) */}
+          <div className="mt-3 border-t border-gray-200 pt-3 px-2">
+            <button 
+              onClick={handlePostJob}
+              className="flex w-full items-center justify-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+            >
               <Plus size={16} />
               <span>Post New Job</span>
             </button>
           </div>
+
+          {/* Notifications Link (since bell icon is hidden on mobile) */}
+          <div className="mt-3 px-2">
+            <button
+              onClick={handleNotification}
+              className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
+            >
+              <Bell size={18} />
+              <span>Notifications</span>
+              <span className="ml-auto h-2 w-2 rounded-full bg-red-500"></span>
+            </button>
+          </div>
+
+          {/* Profile Links (same as desktop dropdown) */}
           <div className="mt-3 border-t border-gray-200 pt-3">
             <div className="space-y-1 px-2">
               {profileLinks.map((link) => (
@@ -156,6 +190,7 @@ const Navbar = () => {
                   key={link.href}
                   to={link.href}
                   className="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.icon}
                   <span>{link.label}</span>
