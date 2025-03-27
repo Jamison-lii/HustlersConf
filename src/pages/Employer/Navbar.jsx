@@ -36,9 +36,10 @@ const Navbar = () => {
     { href: '/employers-profile', icon: <UserCircle size={16} />, label: 'Profile' },
     { href: '/settings', icon: <Settings size={16} />, label: 'Settings' },
     { href: '/billing', icon: <CreditCard size={16} />, label: 'Billing' },
-    { href: '/managepay', icon: <CreditCard size={16} />, label: 'Payment' },
+    { href: '/managepay', icon: <CreditCard size={16} />, label: 'Payment' }, 
     { href: '/support', icon: <HelpCircle size={16} />, label: 'Help' },
     { href: '/signin', icon: <LogOut size={16} />, label: 'Sign Out' },
+    { href: '/', icon: <LogOut size={16} />, label: 'seeker?' },
   ];
 
   return (
